@@ -3,11 +3,11 @@
 model_list:
   - model_name: asistent-rychly
     litellm_params:
-      model: openai/gpt-5-mini # TODO: nahradit skutečným poskytovatelem/modelem
+      model: deepseek/deepseek-chat # podporuje tool calling, nutné pro volání graph-tools
       api_key: os.environ/LLM_API_KEY
   - model_name: asistent-velky
     litellm_params:
-      model: openai/gpt-5 # TODO: nahradit skutečným poskytovatelem/modelem
+      model: deepseek/deepseek-reasoner
       api_key: os.environ/LLM_API_KEY
   - model_name: prepis
     litellm_params:
