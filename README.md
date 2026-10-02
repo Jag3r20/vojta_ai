@@ -23,9 +23,11 @@ Architektura a plán milníků jsou v zadání; tento README popisuje jen spušt
    python3 -c "import secrets; print(secrets.token_hex(32))"
    ```
 
-2. Do `litellm/config.yaml` doplň skutečného poskytovatele a model za
-   placeholdery `openai/gpt-5-mini` apod. a do `.env` vlož `LLM_API_KEY` a
-   `STT_API_KEY`.
+2. Chat modely (`asistent-rychly`, `asistent-velky`) jsou nastavené na
+   DeepSeek (`deepseek-chat` / `deepseek-reasoner`) – do `.env` vlož
+   `LLM_API_KEY` s DeepSeek klíčem. Přepis řeči (`prepis`) ještě čeká na
+   vybraného STT poskytovatele – doplň model v `litellm/config.yaml` a
+   `STT_API_KEY` v `.env`.
 
 3. Spusť:
 
@@ -69,8 +71,8 @@ pytest
 - [x] `compose.yml`, `compose.prod.yml`, `.env.example`, `.gitignore`
 - [x] `graph-tools` běží jako FastAPI služba s `/health`
 - [x] `litellm/config.yaml` s aliasy `asistent-rychly`, `asistent-velky`, `prepis`
-- [ ] Reálný chat a přepis řeči – vyžaduje `LLM_API_KEY`/`STT_API_KEY` od
-  Filipa a doplnění konkrétního modelu v `litellm/config.yaml`
+- [x] Chat modely nastavené na DeepSeek, `LLM_API_KEY` vyplněný lokálně v `.env`
+- [ ] Přepis řeči – vyžaduje vybraného STT poskytovatele a `STT_API_KEY`
 
 Další kroky a provozní dokumentace: `docs/entra-setup.md` (M2),
 `docs/deploy-vps.md` (M7), `docs/system-prompt.md`.
