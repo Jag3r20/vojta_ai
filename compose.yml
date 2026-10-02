@@ -8,6 +8,9 @@ services:
       - WEBUI_SECRET_KEY=${WEBUI_SECRET_KEY}
       - WEBUI_URL=${WEBUI_URL}
       - ENABLE_OLLAMA_API=false
+      # graph-tools' DATA_DIR comes in via env_file but collides with
+      # Open WebUI's own DATA_DIR (its backend data path) - pin it back.
+      - DATA_DIR=/app/backend/data
     ports:
       - "3000:8080"
     volumes:
