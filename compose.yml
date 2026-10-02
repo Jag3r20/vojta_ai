@@ -1,0 +1,43 @@
+services:
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:v0.11.4
+    env_file: .env
+    environment:
+      - OPENAI_API_BASE_URL=http://litellm:4000/v1
+      - OPENAI_API_KEY=${LITELLM_MASTER_KEY}
+      - WEBUI_SECRET_KEY=${WEBUI_SECRET_KEY}
+      - WEBUI_URL=${WEBUI_URL}
+      - ENABLE_OLLAMA_API=false
+    ports:
+      - "3000:8080"
+    volumes:
+      - ./data/open-webui:/app/backend/data
+    depends_on:
+      litellm:
+        condition: service_healthy
+    restart: unless-stopped
+
+  litellm:
+    image: ghcr.io/berriai/litellm:v1.83.3-stable
+    env_file: .env
+    command: ["--config", "/app/config.yaml", "--port", "4000"]
+    expose:
+      - "4000"
+    volumes:
+      - ./litellm/config.yaml:/app/config.yaml:ro
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:4000/health/liveliness')"]
+      interval: 30s
+      timeout: 5s
+      start_period: 15s
+      retries: 3
+    restart: unless-stopped
+
+  graph-tools:
+    build: ./graph-tools
+    env_file: .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data/graph-tools:/data
+    restart: unless-stopped

@@ -1,0 +1,8 @@
+services:
+  open-webui:
+    ports:
+      - "127.0.0.1:3000:8080"
+
+  graph-tools:
+    ports:
+      - "127.0.0.1:8000:8000"
