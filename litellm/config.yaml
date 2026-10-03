@@ -11,7 +11,7 @@ model_list:
       api_key: os.environ/LLM_API_KEY
   - model_name: prepis
     litellm_params:
-      model: openai/gpt-4o-transcribe # TODO: nahradit skutečným STT poskytovatelem
+      model: groq/whisper-large-v3-turbo
       api_key: os.environ/STT_API_KEY
     model_info:
       mode: audio_transcription
