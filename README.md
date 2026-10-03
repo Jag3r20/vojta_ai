@@ -87,5 +87,19 @@ v prohlížeči):
 - [x] Admin nastavení v Open WebUI (Connections, Audio STT i TTS, vypnutí
   registrace) projito a otestováno živě přes voice mode
 
+## Milník M2 – stav
+
+- [x] `/auth/login`, `/auth/callback`, `/auth/status` (MSAL, authorization
+  code flow, delegovaná oprávnění)
+- [x] Token cache šifrovaná Fernetem (`TOKEN_ENCRYPTION_KEY`), uložená do
+  `DATA_DIR/token_cache.bin`, přežije restart kontejneru
+- [x] Chybějící `TENANT_ID`/`CLIENT_ID`/`CLIENT_SECRET` hlásí srozumitelnou
+  českou chybu místo pádu
+- [x] Testy (mockovaný MSAL): login redirect, chybějící/neplatný callback,
+  úspěšný zápis šifrované cache, `/auth/status`
+- [ ] Registrace aplikace v Entra (`docs/entra-setup.md`) – potřeba
+  provést v tenantu, dokument je hotový, zbývá reálně projít a doplnit
+  `TENANT_ID`/`CLIENT_ID`/`CLIENT_SECRET` do `.env`
+
 Další kroky a provozní dokumentace: `docs/entra-setup.md` (M2),
 `docs/deploy-vps.md` (M7), `docs/system-prompt.md`.
