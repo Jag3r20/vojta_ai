@@ -8,6 +8,7 @@ services:
       - WEBUI_SECRET_KEY=${WEBUI_SECRET_KEY}
       - WEBUI_URL=${WEBUI_URL}
       - ENABLE_OLLAMA_API=false
+      - AUDIO_TTS_VOICE=nova
       # graph-tools' DATA_DIR comes in via env_file but collides with
       # Open WebUI's own DATA_DIR (its backend data path) - pin it back.
       - DATA_DIR=/app/backend/data
