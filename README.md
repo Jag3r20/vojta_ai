@@ -24,10 +24,9 @@ Architektura a plán milníků jsou v zadání; tento README popisuje jen spušt
    ```
 
 2. Chat modely (`asistent-rychly`, `asistent-velky`) jsou nastavené na
-   DeepSeek (`deepseek-chat` / `deepseek-reasoner`) – do `.env` vlož
-   `LLM_API_KEY` s DeepSeek klíčem. Přepis řeči (`prepis`) ještě čeká na
-   vybraného STT poskytovatele – doplň model v `litellm/config.yaml` a
-   `STT_API_KEY` v `.env`.
+   DeepSeek (`deepseek-chat` / `deepseek-reasoner`) a přepis řeči (`prepis`)
+   na Groq `whisper-large-v3-turbo`. Do `.env` vlož `LLM_API_KEY` (DeepSeek)
+   a `STT_API_KEY` (Groq, z `console.groq.com`).
 
 3. Spusť:
 
@@ -72,7 +71,9 @@ pytest
 - [x] `graph-tools` běží jako FastAPI služba s `/health`
 - [x] `litellm/config.yaml` s aliasy `asistent-rychly`, `asistent-velky`, `prepis`
 - [x] Chat modely nastavené na DeepSeek, `LLM_API_KEY` vyplněný lokálně v `.env`
-- [ ] Přepis řeči – vyžaduje vybraného STT poskytovatele a `STT_API_KEY`
+- [x] Přepis řeči přes Groq `whisper-large-v3-turbo`, `STT_API_KEY` vyplněný lokálně v `.env`
+- [x] `docker compose up` ověřeno, všechny tři služby `healthy`
+- [ ] Projít admin nastavení v Open WebUI (Connections, Audio STT, vypnutí registrace) – ruční krok
 
 Další kroky a provozní dokumentace: `docs/entra-setup.md` (M2),
 `docs/deploy-vps.md` (M7), `docs/system-prompt.md`.
