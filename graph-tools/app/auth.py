@@ -18,8 +18,12 @@ class GraphAuthError(Exception):
     pass
 
 
+#  MSAL requests these automatically and rejects them if passed explicitly.
+_MSAL_RESERVED_SCOPES = {"openid", "profile", "offline_access"}
+
+
 def _scopes() -> list[str]:
-    return settings.graph_scopes.split()
+    return [s for s in settings.graph_scopes.split() if s not in _MSAL_RESERVED_SCOPES]
 
 
 def _token_cache_path() -> Path:

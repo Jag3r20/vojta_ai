@@ -55,8 +55,10 @@ def test_login_redirects_to_microsoft(client, mock_app):
     assert response.headers["location"] == (
         "https://login.microsoftonline.com/test-tenant/oauth2/v2.0/authorize?state=abc123"
     )
+    # offline_access is reserved - MSAL requests it automatically and
+    # raises ValueError if it's also passed explicitly in scopes.
     mock_app.initiate_auth_code_flow.assert_called_once_with(
-        scopes=["User.Read", "offline_access"],
+        scopes=["User.Read"],
         redirect_uri="http://localhost:8000/auth/callback",
     )
 
